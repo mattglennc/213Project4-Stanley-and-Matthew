@@ -91,17 +91,4 @@ public class StoreOrders implements Customizable{
         }
     }
 
-    public static void main(String []args){
-        StoreOrders so = new StoreOrders();
-        Order o = new Order();
-        Order o2 = new Order();
-        Coffee bc = new Coffee(1,2);
-        o.add(bc);
-        so.add(o);
-        YeastDonut yd = new YeastDonut("Strawberry",4);
-        o2.add(yd);
-        so.add(o2);
-        so.remove(o2);
-        so.print();
-    }
 }

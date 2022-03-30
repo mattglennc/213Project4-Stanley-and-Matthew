@@ -129,16 +129,5 @@ public class Order implements Customizable{
         System.out.println("TOTAL:$" + decimalFormat.format(finalCost()));
     }
 
-    public static void main(String []args){
-        Order o = new Order();
-        Coffee bc = new Coffee(2,2);
-        bc.add("CREAM");
-        bc.add("MILK");
-        DonutHole dh = new DonutHole("FROSTY",4);
-        o.add(bc);
-        o.add(bc);
-        o.add(dh);
-        o.print();
-    }
 
 }
