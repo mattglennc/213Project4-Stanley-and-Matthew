@@ -37,12 +37,26 @@ public class MainController {
 
     @FXML
     void orderingView(ActionEvent event) throws IOException{
-
+        FXMLLoader orderLoader = new FXMLLoader(Main.class.getResource("order-view.fxml"));
+        Scene orderScene = new Scene((VBox) orderLoader.load(), 604, 549);
+        Stage orderStage = new Stage();
+        orderStage.setTitle("Your Order");
+        orderStage.setScene(orderScene);
+        orderStage.show();
+        OrderController orderController = orderLoader.getController();
+        orderController.setMainController(this);
     }
 
     @FXML
     void storeOrdersView(ActionEvent event) throws IOException{
-
+        FXMLLoader storeLoader = new FXMLLoader(Main.class.getResource("storeOrders-view.fxml"));
+        Scene storeScene = new Scene((VBox) storeLoader.load(), 604, 549);
+        Stage storeStage = new Stage();
+        storeStage.setTitle("Store Orders");
+        storeStage.setScene(storeScene);
+        storeStage.show();
+        StoreOrderController storeOrdersController = storeLoader.getController();
+        storeOrdersController.setMainController(this);
     }
 
 }

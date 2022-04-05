@@ -55,7 +55,10 @@
             </Button>
             <Button focusTraversable="false" mnemonicParsing="false" onAction="#orderingView" style="-fx-background-color: black;" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@YourOrder.jpg" />
+                     </image></ImageView>
                </graphic>
                <GridPane.margin>
                   <Insets top="20.0" />
@@ -63,7 +66,10 @@
             </Button>
             <Button focusTraversable="false" mnemonicParsing="false" onAction="#storeOrdersView" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@StoreOrders.jpg" />
+                     </image></ImageView>
                </graphic>
                <GridPane.margin>
                   <Insets top="20.0" />
