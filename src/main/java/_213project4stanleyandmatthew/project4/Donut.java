@@ -2,6 +2,7 @@ package _213project4stanleyandmatthew.project4;
 
 public class Donut extends MenuItem{
 
+
     private String flavor;
 
     public Donut(String flavor, int quantity){

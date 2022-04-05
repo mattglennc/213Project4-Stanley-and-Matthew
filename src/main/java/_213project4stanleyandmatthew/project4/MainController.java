@@ -2,44 +2,40 @@ package _213project4stanleyandmatthew.project4;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.ToggleButton;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-//Here it is
+import java.io.IOException;
 
 public class MainController {
-    @FXML
-    private ToggleGroup Menu;
 
     @FXML
-    private ToggleButton coffeeButton;
-
-    @FXML
-    private ToggleButton donutsButton;
-
-    @FXML
-    private ToggleButton orderingButton;
-
-    @FXML
-    private ToggleButton storeButton;
-
-    @FXML
-    void coffeeView(ActionEvent event) {
+    void coffeeView(ActionEvent event) throws IOException{
 
     }
 
     @FXML
-    void donutsView(ActionEvent event) {
+    void donutsView(ActionEvent event) throws IOException {
+        FXMLLoader donutLoader = new FXMLLoader(Main.class.getResource("donut-view.fxml"));
+        Scene donutScene = new Scene((VBox) donutLoader.load(), 604, 549);
+        Stage donutStage = new Stage();
+        donutStage.setTitle("Donuts");
+        donutStage.setScene(donutScene);
+        donutStage.show();
+        DonutController donutController = donutLoader.getController();
+        donutController.setMainController(this);
+    }
+
+    @FXML
+    void orderingView(ActionEvent event) throws IOException{
 
     }
 
     @FXML
-    void orderingView(ActionEvent event) {
+    void storeOrdersView(ActionEvent event) throws IOException{
 
     }
 
-    @FXML
-    void storeOrdersView(ActionEvent event) {
-
-    }
 }
