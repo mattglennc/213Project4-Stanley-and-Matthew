@@ -13,7 +13,14 @@ public class MainController {
 
     @FXML
     void coffeeView(ActionEvent event) throws IOException{
-
+        FXMLLoader coffeeLoader = new FXMLLoader(Main.class.getResource("coffee-view.fxml"));
+        Scene coffeeScene = new Scene((VBox) coffeeLoader.load(), 604, 549);
+        Stage coffeeStage = new Stage();
+        coffeeStage.setTitle("Coffee");
+        coffeeStage.setScene(coffeeScene);
+        coffeeStage.show();
+        CoffeeController CoffeeController = coffeeLoader.getController();
+        CoffeeController.setMainController(this);
     }
 
     @FXML
