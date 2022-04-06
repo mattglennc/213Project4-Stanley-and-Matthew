@@ -19,16 +19,14 @@ public class StoreOrderController {
     @FXML
     private TextField totalCost;
 
-    public void initialize(){
+    public void initialize() {
 
     }
 
 
-
-    public void setMainController(MainController controller){
+    public void setMainController(MainController controller) {
         mainController = controller;
     }
-
 
 
     @FXML

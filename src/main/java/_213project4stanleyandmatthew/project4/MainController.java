@@ -13,32 +13,32 @@ public class MainController {
     private StoreOrders orders;
     private Order currentOrder;
 
-    public StoreOrders getOrders(){
+    public StoreOrders getOrders() {
         return this.orders;
     }
 
-    public void setOrders(){
+    public void setOrders() {
         this.orders.add(currentOrder);
         currentOrder = new Order();
         return;
     }
 
-    public  Order getOrder(){
+    public Order getOrder() {
         return this.currentOrder;
     }
 
-    public void setOrder(Order newOrder){
+    public void setOrder(Order newOrder) {
         this.currentOrder = newOrder;
         return;
     }
 
-    public void initialize(){
+    public void initialize() {
         this.orders = new StoreOrders();
         this.currentOrder = new Order();
     }
 
     @FXML
-    void coffeeView(ActionEvent event) throws IOException{
+    void coffeeView(ActionEvent event) throws IOException {
         FXMLLoader coffeeLoader = new FXMLLoader(Main.class.getResource("coffee-view.fxml"));
         Scene coffeeScene = new Scene((VBox) coffeeLoader.load(), 604, 549);
         Stage coffeeStage = new Stage();
@@ -62,7 +62,7 @@ public class MainController {
     }
 
     @FXML
-    void orderingView(ActionEvent event) throws IOException{
+    void orderingView(ActionEvent event) throws IOException {
         FXMLLoader orderLoader = new FXMLLoader(Main.class.getResource("order-view.fxml"));
         Scene orderScene = new Scene((VBox) orderLoader.load(), 604, 549);
         Stage orderStage = new Stage();
@@ -74,7 +74,7 @@ public class MainController {
     }
 
     @FXML
-    void storeOrdersView(ActionEvent event) throws IOException{
+    void storeOrdersView(ActionEvent event) throws IOException {
         FXMLLoader storeLoader = new FXMLLoader(Main.class.getResource("storeOrders-view.fxml"));
         Scene storeScene = new Scene((VBox) storeLoader.load(), 604, 549);
         Stage storeStage = new Stage();

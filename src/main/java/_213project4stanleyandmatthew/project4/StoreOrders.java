@@ -1,13 +1,13 @@
 package _213project4stanleyandmatthew.project4;
 
-public class StoreOrders implements Customizable{
+public class StoreOrders implements Customizable {
     private Order[] orders;
     private int numOrders;
     public static final int NOT_FOUND = -1;
     private static final int INITIAL_SIZE = 1;
     private static final int GROWTH_FACTOR = 1;
 
-    public StoreOrders(){
+    public StoreOrders() {
         this.orders = new Order[INITIAL_SIZE];
         this.numOrders = 0;
     }
@@ -36,7 +36,7 @@ public class StoreOrders implements Customizable{
         this.orders = newOrders;
     }
 
-    public boolean add(Object obj){
+    public boolean add(Object obj) {
         if (this.numOrders == this.orders.length) {
             grow();
         }
@@ -51,25 +51,27 @@ public class StoreOrders implements Customizable{
             }
         }
         return false;
-    };
+    }
+
+    ;
 
 
-    public boolean remove(Object obj){
-        if(obj instanceof Order){
+    public boolean remove(Object obj) {
+        if (obj instanceof Order) {
             Order order = (Order) obj;
             int deletionIndex = -1;
             int currentArrIndex = 0;
             Order[] newOrders = new Order[this.orders.length];
-            for(int i = 0; i < this.orders.length; i++){
-                if(order.equals(this.orders[i])){
+            for (int i = 0; i < this.orders.length; i++) {
+                if (order.equals(this.orders[i])) {
                     deletionIndex = i;
                 }
             }
-            if(deletionIndex == -1){
+            if (deletionIndex == -1) {
                 return false;
             }
-            for(int j = 0; j < this.orders.length; j++){
-                if( j!= deletionIndex){
+            for (int j = 0; j < this.orders.length; j++) {
+                if (j != deletionIndex) {
                     newOrders[currentArrIndex] = this.orders[j];
                     currentArrIndex = currentArrIndex + 1;
                 }
@@ -84,7 +86,7 @@ public class StoreOrders implements Customizable{
     public void print() {
         System.out.println(this.orders.length);
         for (int i = 0; i < this.numOrders; i++) {
-            System.out.println("ORDER #" + (i+1));
+            System.out.println("ORDER #" + (i + 1));
             System.out.println("--------------");
             this.orders[i].print();
             System.out.println(" ");

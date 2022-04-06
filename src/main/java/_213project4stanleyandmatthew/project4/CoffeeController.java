@@ -13,13 +13,13 @@ public class CoffeeController {
     private MainController mainController;
 
     public void initialize() {
-        ObservableList<String> sizes = FXCollections.observableArrayList("Short", "Tall", "Grande","Venti");
+        ObservableList<String> sizes = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");
         sizeSelect.getItems().addAll(sizes);
-        ObservableList<String> quantities = FXCollections.observableArrayList("1","2","3","4","5");
+        ObservableList<String> quantities = FXCollections.observableArrayList("1", "2", "3", "4", "5");
         quantitiesSelect.getItems().addAll(quantities);
     }
 
-    public void setMainController(MainController controller){
+    public void setMainController(MainController controller) {
         mainController = controller;
     }
 

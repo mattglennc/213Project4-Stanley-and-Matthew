@@ -1,22 +1,18 @@
 package _213project4stanleyandmatthew.project4;
 
-public class Donut extends MenuItem{
+public class Donut extends MenuItem {
 
 
     private String flavor;
 
-    public Donut(String flavor, int quantity){
+    public Donut(String flavor, int quantity) {
         super(quantity);
         this.flavor = flavor;
     }
 
     @Override
-    public double itemPrice(){
+    public double itemPrice() {
         return 0;
-    }
-
-    public String getType(){
-        return "Donut";
     }
 
     @Override
@@ -29,17 +25,21 @@ public class Donut extends MenuItem{
     }
 
     @Override
-    public void update(int updateQuantity){
+    public void update(int updateQuantity) {
         super.update(updateQuantity);
     }
 
     @Override
-    public int getQuantity(){
+    public int getQuantity() {
         return super.getQuantity();
     }
 
+    public String toSubString() {
+        return this.flavor + super.toString();
+    }
+
     @Override
-    public String toString(){
-        return this.flavor.toUpperCase() + " " + super.toString();
+    public String toString() {
+        return this.flavor + " " + super.toString();
     }
 }

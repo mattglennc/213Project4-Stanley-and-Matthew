@@ -2,7 +2,7 @@ package _213project4stanleyandmatthew.project4;
 
 import java.text.DecimalFormat;
 
-public class Order implements Customizable{
+public class Order implements Customizable {
 
     private MenuItem[] menuItems;
     private int numItems;
@@ -10,7 +10,7 @@ public class Order implements Customizable{
     private static final int INITIAL_SIZE = 1;
     private static final int GROWTH_FACTOR = 1;
 
-    public Order(){
+    public Order() {
         this.menuItems = new MenuItem[INITIAL_SIZE];
         this.numItems = 0;
     }
@@ -38,7 +38,7 @@ public class Order implements Customizable{
         this.menuItems = newItems;
     }
 
-    public boolean add(Object obj){
+    public boolean add(Object obj) {
         if (this.numItems == this.menuItems.length) {
             grow();
         }
@@ -58,30 +58,30 @@ public class Order implements Customizable{
                 }
             }
         }
-            return false;
-        }
+        return false;
+    }
 
 
-    public boolean remove(Object obj){
-        if(obj instanceof MenuItem){
-            MenuItem menuItem = (MenuItem)obj;
+    public boolean remove(Object obj) {
+        if (obj instanceof MenuItem) {
+            MenuItem menuItem = (MenuItem) obj;
             int deletionIndex = -1;
             int currentArrIndex = 0;
-            for(int i = 0; i < this.menuItems.length; i++){
-                if(menuItem.equals(this.menuItems[i])){
+            for (int i = 0; i < this.menuItems.length; i++) {
+                if (menuItem.equals(this.menuItems[i])) {
                     deletionIndex = i;
                 }
             }
-            if(deletionIndex == -1){
+            if (deletionIndex == -1) {
                 return false;
             }
-            if(menuItem.getQuantity() < this.menuItems[deletionIndex].getQuantity()){
+            if (menuItem.getQuantity() < this.menuItems[deletionIndex].getQuantity()) {
                 this.menuItems[deletionIndex].update(-1 * menuItem.getQuantity());
                 return true;
             }
             MenuItem[] newItems = new MenuItem[this.menuItems.length];
-            for(int j = 0; j < this.menuItems.length; j++){
-                if( j!= deletionIndex){
+            for (int j = 0; j < this.menuItems.length; j++) {
+                if (j != deletionIndex) {
                     newItems[currentArrIndex] = this.menuItems[j];
                     currentArrIndex = currentArrIndex + 1;
                 }
@@ -98,12 +98,12 @@ public class Order implements Customizable{
         if (obj instanceof Order) {
             Order o = (Order) obj;
             boolean sameLength = o.numItems == this.numItems;
-            if(!sameLength){
+            if (!sameLength) {
                 return false;
             }
 
-            for(int i = 0; i < this.menuItems.length; i++){
-                if(o.find(this.menuItems[i]) == NOT_FOUND){
+            for (int i = 0; i < this.menuItems.length; i++) {
+                if (o.find(this.menuItems[i]) == NOT_FOUND) {
                     return false;
                 }
             }
@@ -112,13 +112,22 @@ public class Order implements Customizable{
         return false;
     }
 
-    public double finalCost(){
+    public double finalCost() {
         double cost = 0;
         for (int i = 0; i < this.numItems; i++) {
-            cost+=(this.menuItems[i].totalPrice);
+            cost += (this.menuItems[i].totalPrice);
         }
         return cost;
     }
+
+    public int getNumItems() {
+        return this.numItems;
+    }
+
+    public MenuItem getItem(int index) {
+        return this.menuItems[index];
+    }
+
 
     public void print() {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");

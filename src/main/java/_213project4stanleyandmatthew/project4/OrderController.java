@@ -11,13 +11,15 @@ import javafx.scene.control.TextField;
 public class OrderController {
     private MainController mainController;
 
+    private Order currentOrder;
 
-    public void setMainController(MainController controller){
-        mainController = controller;
-    }
 
-    public void initialize(){
-        Order currentOrder = this.mainController.getOrder();
+    public void setMainController(MainController controller) {
+        this.mainController = controller;
+        this.currentOrder = this.mainController.getOrder();
+        for (int i = 0; i < currentOrder.getNumItems(); i++) {
+            menuItemsList.getItems().add(currentOrder.getItem(i).toString());
+        }
     }
 
     @FXML
@@ -31,7 +33,6 @@ public class OrderController {
 
     @FXML
     private TextField totalCost;
-
 
 
     @FXML
