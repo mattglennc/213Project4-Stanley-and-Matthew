@@ -1,5 +1,7 @@
 package _213project4stanleyandmatthew.project4;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -9,12 +11,13 @@ import javafx.scene.control.TextField;
 public class OrderController {
     private MainController mainController;
 
+
     public void setMainController(MainController controller){
         mainController = controller;
     }
 
     public void initialize(){
-
+        Order currentOrder = this.mainController.getOrder();
     }
 
     @FXML
@@ -28,6 +31,8 @@ public class OrderController {
 
     @FXML
     private TextField totalCost;
+
+
 
     @FXML
     void placeOrder(ActionEvent event) {

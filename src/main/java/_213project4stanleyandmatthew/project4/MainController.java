@@ -10,6 +10,32 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController {
+    private StoreOrders orders;
+    private Order currentOrder;
+
+    public StoreOrders getOrders(){
+        return this.orders;
+    }
+
+    public void setOrders(){
+        this.orders.add(currentOrder);
+        currentOrder = new Order();
+        return;
+    }
+
+    public  Order getOrder(){
+        return this.currentOrder;
+    }
+
+    public void setOrder(Order newOrder){
+        this.currentOrder = newOrder;
+        return;
+    }
+
+    public void initialize(){
+        this.orders = new StoreOrders();
+        this.currentOrder = new Order();
+    }
 
     @FXML
     void coffeeView(ActionEvent event) throws IOException{
