@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 public class StoreOrderController {
     private MainController mainController;
 
+
     @FXML
     private ListView<String> orderList;
 
@@ -22,9 +23,12 @@ public class StoreOrderController {
 
     }
 
+
+
     public void setMainController(MainController controller){
         mainController = controller;
     }
+
 
 
     @FXML
