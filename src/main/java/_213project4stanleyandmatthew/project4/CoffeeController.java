@@ -79,7 +79,6 @@ public class CoffeeController {
     @FXML
     void milkCheck(ActionEvent event) {
         if(milkBox.isSelected()){
-            System.out.println("MILK");
             coffee.add("Milk");
         }else{
             coffee.remove("Milk");
