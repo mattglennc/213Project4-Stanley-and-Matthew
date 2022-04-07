@@ -49,7 +49,32 @@ public class CoffeeController {
 
     @FXML
     void orderCoffee(ActionEvent event) {
+        String size = sizeSelect.getValue();
+        String quantity = quantitiesSelect.getValue();
+        int quant = Integer.parseInt(quantity);
+        Coffee coffee = new Coffee(quant, size);
+        if(syrupBox.isSelected()){
+            coffee.add("Syrup");
+        }
+        if(wcBox.isSelected()){
+            coffee.add("Whipped Cream");
+        }
+        if(milkBox.isSelected()){
+            coffee.add("Milk");
+        }
 
+        if(creamBox.isSelected()){
+            coffee.add("Cream");
+        }
+        if(caramelBox.isSelected()){
+           coffee.add("Caramel");
+        }
+        Double totalPrice = coffee.itemPrice();
+        String total = "$" + String.format("%.2f", totalPrice);
+        subTotal.setText(total);
+        Order order = this.mainController.getOrder();
+        order.add(coffee);
+        this.mainController.setOrder(order);
     }
 
 }

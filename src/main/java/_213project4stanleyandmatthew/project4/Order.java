@@ -30,6 +30,8 @@ public class Order implements Customizable {
         return NOT_FOUND;
     }
 
+
+
     private void grow() {
         MenuItem[] newItems = new MenuItem[this.menuItems.length + GROWTH_FACTOR];
         for (int i = 0; i < this.menuItems.length; i++) {
@@ -61,6 +63,9 @@ public class Order implements Customizable {
         return false;
     }
 
+    public MenuItem getMenuItem(int index){
+        return this.menuItems[index];
+    }
 
     public boolean remove(Object obj) {
         if (obj instanceof MenuItem) {

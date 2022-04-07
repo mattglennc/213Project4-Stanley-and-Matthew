@@ -17,7 +17,7 @@ public class MainController {
         return this.orders;
     }
 
-    public void setOrders() {
+    public void placeOrder() {
         this.orders.add(currentOrder);
         currentOrder = new Order();
         return;

@@ -13,12 +13,28 @@ public class Coffee extends MenuItem implements Customizable {
     private static final int GROWTH_FACTOR = 1;
     private final static String[] SIZES = {"SHORT", "TALL", "GRANDE", "VENTI"};
 
-    public Coffee(int quantity, int size) {
+    public Coffee(int quantity, String size) {
         super(quantity);
-        this.size = size;
+        this.size = getSizeInt(size);
         this.addIns = new String[INITIAL_SIZE];
         this.numAddIns = 0;
         super.totalPrice = this.itemPrice();
+    }
+
+    private int getSizeInt(String size){
+        if(size.equals("Sort")){
+            return 0;
+        }
+        else if (size.equals("Tall")){
+            return 1;
+        }
+        else if (size.equals("Grande")){
+            return 2;
+        }
+        else if (size.equals("Venti")){
+            return 3;
+        }
+        return 0;
     }
 
     public boolean add(Object obj) {

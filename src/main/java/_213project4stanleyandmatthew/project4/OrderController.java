@@ -13,6 +13,7 @@ public class OrderController {
 
     private Order currentOrder;
 
+    private static final Double SALESTAX = .06625;
 
     public void setMainController(MainController controller) {
         this.mainController = controller;
@@ -20,6 +21,20 @@ public class OrderController {
         for (int i = 0; i < currentOrder.getNumItems(); i++) {
             menuItemsList.getItems().add(currentOrder.getItem(i).toString());
         }
+        setCosts();
+    }
+
+
+    private void setCosts(){
+        Double numSubtotal = this.currentOrder.finalCost();
+        String price = "$" + String.format("%.2f", numSubtotal);
+        subTotal.setText(price);
+        Double tax = SALESTAX * numSubtotal;
+        Double total = tax + numSubtotal;
+        String strTax = "$" + String.format("%.2f", tax);
+        String newTotal = "$" + String.format("%.2f", total);
+        salesTax.setText(strTax);
+        totalCost.setText(newTotal);
     }
 
     @FXML
@@ -37,12 +52,16 @@ public class OrderController {
 
     @FXML
     void placeOrder(ActionEvent event) {
-
+        this.mainController.placeOrder();
     }
 
     @FXML
     void removeItems(ActionEvent event) {
-
+        int index = menuItemsList.getSelectionModel().getSelectedIndex();
+        MenuItem remove = this.currentOrder.getMenuItem(index);
+        this.currentOrder.remove(remove);
+        menuItemsList.getItems().remove(index);
+        setCosts();
     }
 
 }
