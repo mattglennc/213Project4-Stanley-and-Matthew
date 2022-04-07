@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -26,10 +27,19 @@ public class CoffeeController {
         int quant = Integer.parseInt(quantity);
         coffee = new Coffee(quant, size);
         subTotal.setText(coffee.priceString());
+        resetBoxes();
     }
 
     public void setMainController(MainController controller) {
         mainController = controller;
+    }
+
+    private void resetBoxes(){
+        caramelBox.setSelected(false);
+        wcBox.setSelected(false);
+        milkBox.setSelected(false);
+        creamBox.setSelected(false);
+        syrupBox.setSelected(false);
     }
 
     @FXML
@@ -124,7 +134,13 @@ public class CoffeeController {
     void orderCoffee(ActionEvent event) {
         Order order = this.mainController.getOrder();
         order.add(coffee);
+        initialize();
         this.mainController.setOrder(order);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Order Confirmation");
+        alert.setHeaderText("Item has been added to your order.");
+        alert.setContentText("Please check your order to view.");
+        alert.showAndWait();
     }
 
 }

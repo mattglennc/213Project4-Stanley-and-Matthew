@@ -161,9 +161,8 @@ public class Coffee extends MenuItem implements Customizable {
         String sizeString = this.sizeString + " ";
         String addInsString = "(";
         if (this.numAddIns == 0) {
-            addInsString = addInsString + " ";
+            addInsString = " ";
         } else {
-            addInsString = addInsString + " ";
             for (int i = 0; i < addIns.length; i++) {
                 if (i == addIns.length - 1) {
                     addInsString = addInsString + addIns[i] + ") ";

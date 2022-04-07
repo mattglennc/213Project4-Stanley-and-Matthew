@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class DonutController {
     private static final ObservableList<String> YEASTFLAVORS = FXCollections.observableArrayList("jelly", "glazed", "chocolate frosted", "strawberry frosted", "sugar", "lemon filled");
@@ -56,11 +53,26 @@ public class DonutController {
         }
     }
 
+    private boolean missingInfo(){
+        if(quantitySelect.getValue() == null || flavorList.getSelectionModel().getSelectedItem() == null || donutSelect.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("MISSING INFO");
+            alert.setHeaderText("One or more fields are empty.");
+            alert.setContentText("Make sure all fields are filled before adding to order.");
+            alert.showAndWait();
+            return true;
+        }
+        return false;
+    }
+
     @FXML
     void addDonuts(ActionEvent event) {
         String SelectedDonut = flavorList.getSelectionModel().getSelectedItem();
         String quantity = quantitySelect.getValue();
         String newTotal = subTotalText.getText();
+        if(missingInfo()){
+            return;
+        }
         int numQuantity = Integer.parseInt(quantity);
         int numDonuts = donutsOrdered.getNumItems();
         Donut d = null;
@@ -91,15 +103,45 @@ public class DonutController {
 
     @FXML
     void orderDonuts(ActionEvent event) {
+        if(donutsOrdered.getNumItems() == 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("NO DONUTS ORDERED");
+            alert.setHeaderText("You have 0 items chosen.");
+            alert.setContentText("Please add at least 1 item to order.");
+            alert.showAndWait();
+            return;
+        }
         Order order = this.mainController.getOrder();
         for (int i = 0; i < donutsOrdered.getNumItems(); i++) {
             order.add(donutsOrdered.getItem(i));
         }
         this.mainController.setOrder(order);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Order Confirmed");
+        alert.setHeaderText("Item(s) added to order.");
+        alert.setContentText("Please check your order to view.");
+        alert.showAndWait();
     }
 
     @FXML
     void removeDonuts(ActionEvent event) {
+        if(donutsOrdered.getNumItems() == 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NO DONUTS ORDERED");
+            alert.setHeaderText("You have 0 items chosen.");
+            alert.setContentText("Must have at least 1 item to remove from order.");
+            alert.showAndWait();
+            return;
+        }
+
+        if(donutList.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NO ITEM SELECTED");
+            alert.setHeaderText("You have not selected an item.");
+            alert.setContentText("Please select an item to remove from the order.");
+            alert.showAndWait();
+            return;
+        }
         int index = donutList.getSelectionModel().getSelectedIndex();
         donutList.getItems().remove(index);
         Donut removeDonut = (Donut) donutsOrdered.getItem(index);

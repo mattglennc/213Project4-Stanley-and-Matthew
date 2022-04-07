@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -52,11 +53,42 @@ public class OrderController {
 
     @FXML
     void placeOrder(ActionEvent event) {
+        if (currentOrder.getNumItems() == 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("NO ITEMS ORDERED");
+            alert.setHeaderText("You have 0 items ordered.");
+            alert.setContentText("Order must have at least 1 item to be placed.");
+            alert.showAndWait();
+            return;
+        }
         this.mainController.placeOrder();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Order Confirmed");
+        alert.setHeaderText("Your order has been placed.");
+        alert.setContentText("Check the store orders to view.");
+        alert.showAndWait();
+        return;
     }
 
     @FXML
     void removeItems(ActionEvent event) {
+        if(currentOrder.getNumItems() == 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NO ITEMS ORDERED");
+            alert.setHeaderText("You have 0 items chosen.");
+            alert.setContentText("Must have at least 1 item to remove from order.");
+            alert.showAndWait();
+            return;
+        }
+
+        if(menuItemsList.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NO ITEM SELECTED");
+            alert.setHeaderText("You have not selected an item.");
+            alert.setContentText("Please select an item to remove from the order.");
+            alert.showAndWait();
+            return;
+        }
         int index = menuItemsList.getSelectionModel().getSelectedIndex();
         MenuItem remove = this.currentOrder.getMenuItem(index);
         this.currentOrder.remove(remove);
