@@ -44,7 +44,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <CheckBox fx:id="milkBox" focusTraversable="false" mnemonicParsing="false" text="Milk" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <CheckBox fx:id="milkBox" focusTraversable="false" mnemonicParsing="false" onAction="#milkCheck" text="Milk" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="MT Extra" size="17.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Insets left="75.0" />
                </GridPane.margin>
             </CheckBox>
-            <CheckBox fx:id="syrupBox" focusTraversable="false" mnemonicParsing="false" text="Syrup" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+            <CheckBox fx:id="syrupBox" focusTraversable="false" mnemonicParsing="false" onAction="#syrupCheck" text="Syrup" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                <font>
                   <Font name="MT Extra" size="17.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Insets left="75.0" />
                </padding>
             </CheckBox>
-            <CheckBox fx:id="caramelBox" focusTraversable="false" mnemonicParsing="false" text="Caramel" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <CheckBox fx:id="caramelBox" focusTraversable="false" mnemonicParsing="false" onAction="#caramelCheck" text="Caramel" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="MT Extra" size="17.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Insets left="75.0" />
                </GridPane.margin>
             </CheckBox>
-            <CheckBox fx:id="creamBox" focusTraversable="false" mnemonicParsing="false" text="Cream" GridPane.halignment="LEFT">
+            <CheckBox fx:id="creamBox" focusTraversable="false" mnemonicParsing="false" onAction="#creamCheck" text="Cream" GridPane.halignment="LEFT">
                <font>
                   <Font name="MT Extra" size="17.0" />
                </font>
@@ -76,8 +76,8 @@
                   <Insets left="75.0" />
                </GridPane.margin>
             </CheckBox>
-            <ComboBox fx:id="sizeSelect" focusTraversable="false" prefHeight="25.0" prefWidth="117.0" promptText="Pick a Size" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <ComboBox fx:id="quantitiesSelect" focusTraversable="false" prefHeight="25.0" prefWidth="108.0" promptText="How Many?" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <ComboBox fx:id="sizeSelect" focusTraversable="false" onAction="#sizeChosen" prefHeight="25.0" prefWidth="117.0" promptText="Pick a Size" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="quantitiesSelect" focusTraversable="false" onAction="#quantChosen" prefHeight="25.0" prefWidth="108.0" promptText="How Many?" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <GridPane prefHeight="167.0" prefWidth="604.0">
@@ -90,7 +90,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <CheckBox fx:id="wcBox" focusTraversable="false" mnemonicParsing="false" text="Whipped Cream" GridPane.valignment="TOP">
+            <CheckBox fx:id="wcBox" focusTraversable="false" mnemonicParsing="false" onAction="#wcCheck" text="Whipped Cream" GridPane.valignment="TOP">
                <font>
                   <Font name="MT Extra" size="17.0" />
                </font>

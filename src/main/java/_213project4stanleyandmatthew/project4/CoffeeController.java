@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 
 public class CoffeeController {
 
+    private Coffee coffee;
+
     private MainController mainController;
 
     public void initialize() {
@@ -17,6 +19,13 @@ public class CoffeeController {
         sizeSelect.getItems().addAll(sizes);
         ObservableList<String> quantities = FXCollections.observableArrayList("1", "2", "3", "4", "5");
         quantitiesSelect.getItems().addAll(quantities);
+        sizeSelect.getSelectionModel().selectFirst();
+        quantitiesSelect.getSelectionModel().selectFirst();
+        String size = sizeSelect.getValue();
+        String quantity = quantitiesSelect.getValue();
+        int quant = Integer.parseInt(quantity);
+        coffee = new Coffee(quant, size);
+        subTotal.setText(coffee.priceString());
     }
 
     public void setMainController(MainController controller) {
@@ -48,30 +57,72 @@ public class CoffeeController {
     private CheckBox wcBox;
 
     @FXML
-    void orderCoffee(ActionEvent event) {
-        String size = sizeSelect.getValue();
-        String quantity = quantitiesSelect.getValue();
-        int quant = Integer.parseInt(quantity);
-        Coffee coffee = new Coffee(quant, size);
-        if(syrupBox.isSelected()){
-            coffee.add("Syrup");
+    void caramelCheck(ActionEvent event) {
+        if(caramelBox.isSelected()){
+            coffee.add("Caramel");
+        }else{
+            coffee.remove("Caramel");
         }
-        if(wcBox.isSelected()){
-            coffee.add("Whipped Cream");
-        }
-        if(milkBox.isSelected()){
-            coffee.add("Milk");
-        }
+        subTotal.setText(coffee.priceString());
+    }
 
+    @FXML
+    void creamCheck(ActionEvent event) {
         if(creamBox.isSelected()){
             coffee.add("Cream");
+        }else{
+            coffee.remove("Cream");
         }
-        if(caramelBox.isSelected()){
-           coffee.add("Caramel");
+        subTotal.setText(coffee.priceString());
+    }
+
+    @FXML
+    void milkCheck(ActionEvent event) {
+        if(milkBox.isSelected()){
+            System.out.println("MILK");
+            coffee.add("Milk");
+        }else{
+            coffee.remove("Milk");
         }
-        Double totalPrice = coffee.itemPrice();
-        String total = "$" + String.format("%.2f", totalPrice);
-        subTotal.setText(total);
+        subTotal.setText(coffee.priceString());
+    }
+
+    @FXML
+    void sizeChosen(ActionEvent event) {
+        coffee.setSize(sizeSelect.getValue());
+        subTotal.setText(coffee.priceString());
+    }
+
+    @FXML
+    void quantChosen(ActionEvent event) {
+        int quant = Integer.parseInt(quantitiesSelect.getValue());
+        coffee.update(quant - coffee.getQuantity());
+        subTotal.setText(coffee.priceString());
+
+    }
+
+    @FXML
+    void syrupCheck(ActionEvent event) {
+        if(syrupBox.isSelected()){
+            coffee.add("Syrup");
+        }else{
+            coffee.remove("Syrup");
+        }
+        subTotal.setText(coffee.priceString());
+    }
+
+    @FXML
+    void wcCheck(ActionEvent event) {
+        if(wcBox.isSelected()){
+            coffee.add("Whipped Cream");
+        }else{
+            coffee.remove("Whipped Cream");
+        }
+        subTotal.setText(coffee.priceString());
+    }
+
+    @FXML
+    void orderCoffee(ActionEvent event) {
         Order order = this.mainController.getOrder();
         order.add(coffee);
         this.mainController.setOrder(order);

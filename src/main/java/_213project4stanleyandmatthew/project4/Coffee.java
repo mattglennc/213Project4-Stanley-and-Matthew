@@ -3,36 +3,47 @@ package _213project4stanleyandmatthew.project4;
 public class Coffee extends MenuItem implements Customizable {
 
     private int size;
+    private String sizeString;
     private final static double SHORT_PRICE = 1.69;
     private final static double SIZE_INCREASE = 0.40;
     private final static double ADD_ON = 0.30;
     private String[] addIns;
     private int numAddIns;
+    private final static int GRANDE = 2;
+    private final static int VENTI = 3;
     public static final int NOT_FOUND = -1;
     private static final int INITIAL_SIZE = 0;
     private static final int GROWTH_FACTOR = 1;
-    private final static String[] SIZES = {"SHORT", "TALL", "GRANDE", "VENTI"};
 
     public Coffee(int quantity, String size) {
         super(quantity);
         this.size = getSizeInt(size);
+        this.sizeString = size;
         this.addIns = new String[INITIAL_SIZE];
         this.numAddIns = 0;
         super.totalPrice = this.itemPrice();
     }
 
+    public void setSize(String size){
+        this.size = getSizeInt(size);
+    }
+
+    public String priceString(){
+        return "$" + String.format("%.2f", this.itemPrice());
+    }
+
     private int getSizeInt(String size){
-        if(size.equals("Sort")){
+        if(size.equals("Short")){
             return 0;
         }
         else if (size.equals("Tall")){
             return 1;
         }
         else if (size.equals("Grande")){
-            return 2;
+            return GRANDE;
         }
         else if (size.equals("Venti")){
-            return 3;
+            return VENTI;
         }
         return 0;
     }
@@ -101,7 +112,7 @@ public class Coffee extends MenuItem implements Customizable {
     @Override
     public double itemPrice() {
         double resultPrice = SHORT_PRICE;
-        resultPrice += this.size * SIZE_INCREASE;
+        resultPrice += this.size * SIZE_INCREASE + ADD_ON * numAddIns;
         return resultPrice * super.quantity;
     }
 
@@ -146,21 +157,22 @@ public class Coffee extends MenuItem implements Customizable {
 
     @Override
     public String toString() {
-        String result = "COFFEE::";
-        String sizeString = SIZES[this.size] + "::";
-        String addInsString = "ADD-INS:";
+        String result = "Coffee ";
+        String sizeString = this.sizeString + " ";
+        String addInsString = "(";
         if (this.numAddIns == 0) {
-            addInsString = addInsString + "NONE::";
+            addInsString = addInsString + " ";
         } else {
+            addInsString = addInsString + " ";
             for (int i = 0; i < addIns.length; i++) {
                 if (i == addIns.length - 1) {
-                    addInsString = addInsString + addIns[i] + "::";
+                    addInsString = addInsString + addIns[i] + ") ";
                 } else {
-                    addInsString = addInsString + addIns[i] + "+";
+                    addInsString = addInsString + addIns[i] + ", ";
                 }
             }
         }
-        return result + sizeString + addInsString + super.toString();
+        return sizeString + result + addInsString + super.toString();
     }
 
 }
