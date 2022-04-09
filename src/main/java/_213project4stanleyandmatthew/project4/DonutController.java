@@ -6,6 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+/**
+ * This DonutController class provides functionality for donut-view.xml, allowing
+ * users to place orders of Donut.  Private helper methods are included.
+ *
+ * @author Matthew Carrascoso & Stanley Chou
+ */
 public class DonutController {
     private static final ObservableList<String> YEASTFLAVORS = FXCollections.observableArrayList("jelly", "glazed", "chocolate frosted", "strawberry frosted", "sugar", "lemon filled");
     private static final ObservableList<String> CAKEFLAVORS = FXCollections.observableArrayList("cinnamon sugar", "old fashion", "blueberry");
@@ -30,6 +36,9 @@ public class DonutController {
     @FXML
     private TextField subTotalText;
 
+    /**
+     * Initializes all data fields as well as the current Donut Order to new instances.
+     */
     public void initialize() {
         ObservableList<String> donuts = FXCollections.observableArrayList("Cake Donut", "Donut Hole", "Yeast Donut");
         donutSelect.getItems().addAll(donuts);
@@ -38,10 +47,20 @@ public class DonutController {
         donutsOrdered = new Order();
     }
 
+    /**
+     * References the MainController in this DonutController instance.
+     *
+     * @param controller MainController to be referenced in this view.
+     */
     public void setMainController(MainController controller) {
         mainController = controller;
     }
 
+    /**
+     * Event handler that determines which flavor choices to display based on donut type.
+     *
+     * @param event When donut type is selected, display corresponding flavors in flavorList.
+     */
     @FXML
     void donutChosen(ActionEvent event) {
         if (donutSelect.getSelectionModel().getSelectedItem().equals("Yeast Donut")) {
@@ -53,8 +72,13 @@ public class DonutController {
         }
     }
 
-    private boolean missingInfo(){
-        if(quantitySelect.getValue() == null || flavorList.getSelectionModel().getSelectedItem() == null || donutSelect.getSelectionModel().getSelectedItem() == null){
+    /**
+     * Display Alert pop-up if user attempts to add donuts to list and information is missing.
+     *
+     * @return True if information is missing, false otherwise.
+     */
+    private boolean missingInfo() {
+        if (quantitySelect.getValue() == null || flavorList.getSelectionModel().getSelectedItem() == null || donutSelect.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("MISSING INFO");
             alert.setHeaderText("One or more fields are empty.");
@@ -65,17 +89,22 @@ public class DonutController {
         return false;
     }
 
+    /**
+     * Adds selected Donut choice to donutList if not information is missing.
+     *
+     * @param event When button is clicked, add selected Donut to donutList and display it, updating price displayed.
+     */
     @FXML
     void addDonuts(ActionEvent event) {
         String SelectedDonut = flavorList.getSelectionModel().getSelectedItem();
         String quantity = quantitySelect.getValue();
         String newTotal = subTotalText.getText();
-        if(missingInfo()){
+        if (missingInfo()) {
             return;
         }
         int numQuantity = Integer.parseInt(quantity);
         int numDonuts = donutsOrdered.getNumItems();
-        Donut d = null;
+        Donut d;
         if (donutSelect.getSelectionModel().getSelectedItem().equals("Yeast Donut")) {
             d = new YeastDonut(SelectedDonut, numQuantity);
             donutsOrdered.add(d);
@@ -92,18 +121,21 @@ public class DonutController {
         } else {
             donutList.getItems().clear();
             for (int i = 0; i < donutsOrdered.getNumItems(); i++) {
-                donutList.getItems().add(((Donut)donutsOrdered.getItem(i)).toSubString());
+                donutList.getItems().add(((Donut) donutsOrdered.getItem(i)).toSubString());
             }
         }
-
         double finalTotal = donutsOrdered.finalCost();
         newTotal = "$" + String.format("%.2f", finalTotal);
         subTotalText.setText(newTotal);
     }
 
+    /**
+     * Adds selected Donuts to current Order.
+     * @param event When button is clicked, add selected Donuts to current Order.
+     */
     @FXML
     void orderDonuts(ActionEvent event) {
-        if(donutsOrdered.getNumItems() == 0){
+        if (donutsOrdered.getNumItems() == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("NO DONUTS ORDERED");
             alert.setHeaderText("You have 0 items chosen.");
@@ -123,9 +155,13 @@ public class DonutController {
         alert.showAndWait();
     }
 
+    /**
+     * Removes selected donut from DonutList.
+     * @param event When button is clicked, remove selected donuts from DonutList, updating displayed price.
+     */
     @FXML
     void removeDonuts(ActionEvent event) {
-        if(donutsOrdered.getNumItems() == 0){
+        if (donutsOrdered.getNumItems() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("NO DONUTS ORDERED");
             alert.setHeaderText("You have 0 items chosen.");
@@ -134,7 +170,7 @@ public class DonutController {
             return;
         }
 
-        if(donutList.getSelectionModel().getSelectedItem() == null){
+        if (donutList.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("NO ITEM SELECTED");
             alert.setHeaderText("You have not selected an item.");

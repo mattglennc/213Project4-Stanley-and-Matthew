@@ -1,14 +1,17 @@
 package _213project4stanleyandmatthew.project4;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-
+/**
+ * This OrderController class provides functionality for order-view.xml, allowing
+ * users to place and modify Orders.  Private helper methods are included.
+ *
+ * @author Matthew Carrascoso & Stanley Chou
+ */
 public class OrderController {
     private MainController mainController;
 
@@ -16,6 +19,11 @@ public class OrderController {
 
     private static final Double SALESTAX = .06625;
 
+    /**
+     * References the MainController in this DonutController instance.
+     *
+     * @param controller MainController to be referenced in this view.
+     */
     public void setMainController(MainController controller) {
         this.mainController = controller;
         this.currentOrder = this.mainController.getOrder();
@@ -25,7 +33,9 @@ public class OrderController {
         setCosts();
     }
 
-
+    /**
+     * Sets the Order costs to be displayed in the salesTax, subTotal, and totalCost text fields.
+     */
     private void setCosts(){
         Double numSubtotal = this.currentOrder.finalCost();
         String price = "$" + String.format("%.2f", numSubtotal);
@@ -51,6 +61,10 @@ public class OrderController {
     private TextField totalCost;
 
 
+    /**
+     * Places order, adding it to the StoreOrders list of the MainController if there are items in menuItemsList.
+     * @param event When this button is clicked, add this order to the StoreOrders list.
+     */
     @FXML
     void placeOrder(ActionEvent event) {
         if (currentOrder.getNumItems() == 0){
@@ -70,6 +84,10 @@ public class OrderController {
         return;
     }
 
+    /**
+     * Removes selected items from current Order, as long as there is an item chosen and the list is not empty.
+     * @param event When this button is clicked, remove item from menuItemsList.
+     */
     @FXML
     void removeItems(ActionEvent event) {
         if(currentOrder.getNumItems() == 0){
@@ -94,6 +112,11 @@ public class OrderController {
         this.currentOrder.remove(remove);
         menuItemsList.getItems().remove(index);
         setCosts();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Items Removed");
+        alert.setHeaderText("Item(s) have been removed from your order.");
+        alert.setContentText("Close this alert to view your updated order.");
+        alert.showAndWait();
     }
 
 }

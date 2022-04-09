@@ -2,6 +2,12 @@ package _213project4stanleyandmatthew.project4;
 
 import java.text.DecimalFormat;
 
+/**
+ * This Order class provides the methods and constructors for the Order object, which holds
+ * all menu items for an order.  It implements the Customizable interface.
+ *
+ * @author Matthew Carrascoso & Stanley Chou
+ */
 public class Order implements Customizable {
 
     private MenuItem[] menuItems;
@@ -10,15 +16,18 @@ public class Order implements Customizable {
     private static final int INITIAL_SIZE = 1;
     private static final int GROWTH_FACTOR = 1;
 
+    /**
+     * Constructor to create new empty Order instance.
+     */
     public Order() {
         this.menuItems = new MenuItem[INITIAL_SIZE];
         this.numItems = 0;
     }
 
     /**
-     * Takes an account and returns its index in the AccountDatabase, returns NOT_FOUND if not found.
+     * Takes a MenuItem and returns its index in the Order, returns NOT_FOUND if not found.
      *
-     * @param item - the account that needs to be found in the AccountDatabase returning its index
+     * @param item - the account that needs to be found in the Order returning its index
      */
     private int find(MenuItem item) {
         for (int i = 0; i < this.menuItems.length; i++) {
@@ -30,8 +39,10 @@ public class Order implements Customizable {
         return NOT_FOUND;
     }
 
-
-
+    /**
+     * Creates an Order of capacity of the Order + 1 and then copies over that MenuItems of that
+     * MenuItem array into the new array and sets it as the new Order.
+     */
     private void grow() {
         MenuItem[] newItems = new MenuItem[this.menuItems.length + GROWTH_FACTOR];
         for (int i = 0; i < this.menuItems.length; i++) {
@@ -40,6 +51,11 @@ public class Order implements Customizable {
         this.menuItems = newItems;
     }
 
+    /**
+     * Implemented from the Customizable interface, adds a MenuItem to this Order instance.
+     * @param obj MenuItem object to be added to list of MenuItems.
+     * @return True if MenuItem was successfully added to list, false otherwise.
+     */
     public boolean add(Object obj) {
         if (this.numItems == this.menuItems.length) {
             grow();
@@ -63,10 +79,20 @@ public class Order implements Customizable {
         return false;
     }
 
+    /**
+     * Getter method that returns MenuItem at a specified index.
+     * @param index Index of MenuItem to be retrieved.
+     * @return MenuItem of specified index.
+     */
     public MenuItem getMenuItem(int index){
         return this.menuItems[index];
     }
 
+    /**
+     * Implemented from the Customizable interface, removes a MenuItem from the Order
+     * @param obj MenuItem object to be removed from list of MenuItems
+     * @return True if MenuItem was successfully removed from list, false otherwise.
+     */
     public boolean remove(Object obj) {
         if (obj instanceof MenuItem) {
             MenuItem menuItem = (MenuItem) obj;
@@ -98,6 +124,11 @@ public class Order implements Customizable {
         return false;
     }
 
+    /**
+     * Determines if two Order objects are equal.
+     * @param obj Object to be compared to target Order.
+     * @return True if Order instances are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Order) {
@@ -117,6 +148,10 @@ public class Order implements Customizable {
         return false;
     }
 
+    /**
+     * Calculates total cost of Order instance and returns it.
+     * @return Calculated total cost of Order.
+     */
     public double finalCost() {
         double cost = 0;
         for (int i = 0; i < this.numItems; i++) {
@@ -125,15 +160,26 @@ public class Order implements Customizable {
         return cost;
     }
 
+    /**
+     * Getter method which returns number of items in Order.
+     * @return Number of items in Order
+     */
     public int getNumItems() {
         return this.numItems;
     }
 
+    /**
+     * Getter method which returns MenuItem from specified index.
+     * @param index Index of MenuItem to be retrieved.
+     * @return MenuItem at specified index.
+     */
     public MenuItem getItem(int index) {
         return this.menuItems[index];
     }
 
-
+    /**
+     * Prints out every item held in this instance of Order, including all details.
+     */
     public void print() {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         for (int i = 0; i < this.numItems; i++) {

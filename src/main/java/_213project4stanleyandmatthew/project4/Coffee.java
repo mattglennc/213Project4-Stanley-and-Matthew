@@ -1,5 +1,11 @@
 package _213project4stanleyandmatthew.project4;
 
+/**
+ * This Coffee class provides the data fields, constructors and methods for the Coffee object.
+ * It also inherits from the MenuItem class and implements the Customizable interface.
+ *
+ * @author Matthew Carrascoso & Stanley Chou
+ */
 public class Coffee extends MenuItem implements Customizable {
 
     private int size;
@@ -15,6 +21,11 @@ public class Coffee extends MenuItem implements Customizable {
     private static final int INITIAL_SIZE = 0;
     private static final int GROWTH_FACTOR = 1;
 
+    /**
+     * Constructor to create an instance of the Coffee class.
+     * @param quantity Integer field which holds quantity of instance.  Inherited from MenuItem class.
+     * @param size String field which holds the size of instance.
+     */
     public Coffee(int quantity, String size) {
         super(quantity);
         this.size = getSizeInt(size);
@@ -24,14 +35,27 @@ public class Coffee extends MenuItem implements Customizable {
         super.totalPrice = this.itemPrice();
     }
 
+    /**
+     * Setter method for the Integer field for size based on the size String.
+     * @param size String representation of size used to determine Integer size.
+     */
     public void setSize(String size){
         this.size = getSizeInt(size);
     }
 
+    /**
+     * Getter method for the String representation of the Coffee price.
+     * @return String representation of the price of this instance.
+     */
     public String priceString(){
         return "$" + String.format("%.2f", this.itemPrice());
     }
 
+    /**
+     * Helper getter method for determining the Integer representation of the size String.
+     * @param size String size to be considered.
+     * @return Integer corresponding to String size. (0,1,2,3)
+     */
     private int getSizeInt(String size){
         if(size.equals("Short")){
             return 0;
@@ -48,6 +72,11 @@ public class Coffee extends MenuItem implements Customizable {
         return 0;
     }
 
+    /**
+     * Implemented from the Customizable interface, adds a String add-in to the list of add-ins for this Coffee instance.
+     * @param obj Add-In object to be added to list of add-ins.
+     * @return True if add-in was successfully added to list, false otherwise.
+     */
     public boolean add(Object obj) {
         if (this.numAddIns == this.addIns.length) {
             grow();
@@ -72,8 +101,11 @@ public class Coffee extends MenuItem implements Customizable {
         return false;
     }
 
-    ;
-
+    /**
+     * Implemented from the Customizable interface, removes a String add-in from the list of add-ins for this Coffee instance.
+     * @param obj Add-In object to be removed from list of add-ins.
+     * @return True if add-in was successfully removed from list, false otherwise.
+     */
     public boolean remove(Object obj) {
         if (obj instanceof String) {
             String addIn = (String) obj;
@@ -101,6 +133,10 @@ public class Coffee extends MenuItem implements Customizable {
         return false;
     }
 
+    /**
+     * Creates an add-ins array of capacity of the array + 1 and then copies over that values of that
+     * add-ins array into the new array and sets it as the new list of add-ins.
+     */
     private void grow() {
         String[] newAddIns = new String[this.addIns.length + GROWTH_FACTOR];
         for (int i = 0; i < this.addIns.length; i++) {
@@ -109,6 +145,10 @@ public class Coffee extends MenuItem implements Customizable {
         this.addIns = newAddIns;
     }
 
+    /**
+     * Inherited from the MenuItem class.  Calculates Coffee price based on size, quantity, and add-ins.
+     * @return The calculated Coffee price.
+     */
     @Override
     public double itemPrice() {
         double resultPrice = SHORT_PRICE;
@@ -116,6 +156,11 @@ public class Coffee extends MenuItem implements Customizable {
         return resultPrice * super.quantity;
     }
 
+    /**
+     * Takes an add-in and returns its index in the add-ins list, returns NOT_FOUND if not found.
+     * @param addIn - the add-in String that needs to be found in the list returning its index
+     * @return Index of add-in if found, false otherwise.
+     */
     private int find(String addIn) {
         for (int i = 0; i < this.addIns.length; i++) {
             if (addIn.equals(this.addIns[i])) {
@@ -126,6 +171,11 @@ public class Coffee extends MenuItem implements Customizable {
         return NOT_FOUND;
     }
 
+    /**
+     * Determines if two Coffee objects are equal.
+     * @param obj Object to be compared to target Coffee.
+     * @return True if Coffee instances are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Coffee) {
@@ -145,16 +195,10 @@ public class Coffee extends MenuItem implements Customizable {
         return false;
     }
 
-    @Override
-    public void update(int updateQuantity) {
-        super.update(updateQuantity);
-    }
-
-    @Override
-    public int getQuantity() {
-        return super.getQuantity();
-    }
-
+    /**
+     * Inherited from MenuItem, returns string representation of Coffee.
+     * @return String representation of Coffee Instance.
+     */
     @Override
     public String toString() {
         String result = "Coffee ";
