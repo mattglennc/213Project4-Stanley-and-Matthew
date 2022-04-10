@@ -17,7 +17,7 @@ public class Coffee extends MenuItem implements Customizable {
     private int numAddIns;
     private final static int GRANDE = 2;
     private final static int VENTI = 3;
-    public static final int NOT_FOUND = -1;
+    private static final int NOT_FOUND = -1;
     private static final int INITIAL_SIZE = 0;
     private static final int GROWTH_FACTOR = 1;
 

@@ -9,7 +9,7 @@ package _213project4stanleyandmatthew.project4;
 public class StoreOrders implements Customizable {
     private Order[] orders;
     private int numOrders;
-    public static final int NOT_FOUND = -1;
+    private static final int NOT_FOUND = -1;
     private static final int INITIAL_SIZE = 1;
     private static final int GROWTH_FACTOR = 1;
 

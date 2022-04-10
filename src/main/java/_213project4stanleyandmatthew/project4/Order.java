@@ -12,7 +12,7 @@ public class Order implements Customizable {
 
     private MenuItem[] menuItems;
     private int numItems;
-    public static final int NOT_FOUND = -1;
+    private static final int NOT_FOUND = -1;
     private static final int INITIAL_SIZE = 1;
     private static final int GROWTH_FACTOR = 1;
 
