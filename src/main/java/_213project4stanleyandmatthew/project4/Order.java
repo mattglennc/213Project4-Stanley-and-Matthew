@@ -26,8 +26,8 @@ public class Order implements Customizable {
 
     /**
      * Takes a MenuItem and returns its index in the Order, returns NOT_FOUND if not found.
-     *
      * @param item - the account that needs to be found in the Order returning its index
+     * @return Index of found item, NOT_FOUND otherwise.
      */
     private int find(MenuItem item) {
         for (int i = 0; i < this.menuItems.length; i++) {
@@ -179,6 +179,7 @@ public class Order implements Customizable {
 
     /**
      * Prints out every item held in this instance of Order, including all details.
+     * @return String representation of all items in order, along with total cost.
      */
     public String print() {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
