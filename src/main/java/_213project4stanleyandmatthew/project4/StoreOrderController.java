@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import java.io.*;
 
 /**
  * This StoreOrderController class provides functionality for order-view.xml, allowing
@@ -99,10 +100,25 @@ public class StoreOrderController {
     }
 
 
-
     @FXML
-    void exportOrders(ActionEvent event) {
-
-
+    void exportOrders(ActionEvent event) throws FileNotFoundException , IOException{
+        System.out.println("Reached");
+        File file = new File("order.txt");
+        file.createNewFile();
+        PrintWriter pw = new PrintWriter(file);
+        String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
+        int index = Integer.parseInt(orderIndex) - 1;
+        Order currentOrder = this.orders.getOrder(index);
+        pw.println("Order Start");
+        pw.println();
+        for (int i = 0; i < currentOrder.getNumItems(); i++){
+            pw.println(currentOrder.getItem(i).toString());
+        }
+        pw.println();
+        pw.println("Total Cost: " + totalCost.getText());
+        pw.println();
+        pw.println("Order complete");
+        pw.close();
+        return;
     }
 }
