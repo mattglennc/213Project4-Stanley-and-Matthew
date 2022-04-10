@@ -180,13 +180,15 @@ public class Order implements Customizable {
     /**
      * Prints out every item held in this instance of Order, including all details.
      */
-    public void print() {
+    public String print() {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        String result = "";
         for (int i = 0; i < this.numItems; i++) {
-            System.out.println(this.menuItems[i].toString());
+            result = result + (this.menuItems[i].toString() + '\n');
         }
-        System.out.println("--------------");
-        System.out.println("TOTAL:$" + decimalFormat.format(finalCost()));
+        result = result + ("--------------\n");
+        result = result + ("TOTAL COST: $" + decimalFormat.format(finalCost()) + '\n');
+        return result;
     }
 
 

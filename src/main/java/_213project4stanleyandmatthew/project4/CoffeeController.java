@@ -144,7 +144,8 @@ public class CoffeeController {
      */
     @FXML
     void sizeChosen(ActionEvent event) {
-        coffee.setSize(sizeSelect.getValue());
+        String size = sizeSelect.getSelectionModel().getSelectedItem();
+        coffee.setSize(size);
         subTotal.setText(coffee.priceString());
     }
 
@@ -198,15 +199,17 @@ public class CoffeeController {
      */
     @FXML
     void orderCoffee(ActionEvent event) {
+        Coffee tempCoffee = new Coffee(coffee);
         Order order = this.mainController.getOrder();
-        order.add(coffee);
-        reInitialize();
         this.mainController.setOrder(order);
+        order.add(tempCoffee);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Order Confirmation");
         alert.setHeaderText("Item has been added to your order.");
         alert.setContentText("Please check your order to view.");
         alert.showAndWait();
+        reInitialize();
+        setMainController(this.mainController);
     }
 
 }

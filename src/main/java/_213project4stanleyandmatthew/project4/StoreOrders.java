@@ -114,14 +114,15 @@ public class StoreOrders implements Customizable {
      *
      * @return Final formatted String of Orders to be exported by user.
      */
-    public void print() {
-        System.out.println(this.orders.length);
+    public String print() {
+        String result = "";
         for (int i = 0; i < this.numOrders; i++) {
-            System.out.println("ORDER #" + (i + 1));
-            System.out.println("--------------");
-            this.orders[i].print();
+            result = result + ("ORDER #" + (i + 1) + '\n');
+            result = result + ("--------------" + '\n');
+            result = result + this.orders[i].print() + '\n';
             System.out.println(" ");
         }
+        return result;
     }
 
 }

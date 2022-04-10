@@ -93,10 +93,18 @@ public class StoreOrderController {
     @FXML
     void cancelOrders(ActionEvent event) {
         if (orders.getNumOrders() == 0){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("NO ORDERS MADE");
             alert.setHeaderText("You have made 0 orders.");
             alert.setContentText("Must have at least 1 order to cancel.");
+            alert.showAndWait();
+            return;
+        }
+        if (orderNumSelect.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NO ORDERS SELECTED");
+            alert.setHeaderText("No order has been selected.");
+            alert.setContentText("Please select an order number to cancel.");
             alert.showAndWait();
             return;
         }
@@ -122,7 +130,8 @@ public class StoreOrderController {
         File file = new File("order.txt");
         file.createNewFile();
         PrintWriter pw = new PrintWriter(file);
-        String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
+        pw.println(this.orders.print());
+        /*String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
         int index = Integer.parseInt(orderIndex) - 1;
         Order currentOrder = this.orders.getOrder(index);
         pw.println("Order Start");
@@ -133,7 +142,7 @@ public class StoreOrderController {
         pw.println();
         pw.println("Total Cost: " + totalCost.getText());
         pw.println();
-        pw.println("Order complete");
+        pw.println("Order complete");*/
         pw.close();
 
         return;

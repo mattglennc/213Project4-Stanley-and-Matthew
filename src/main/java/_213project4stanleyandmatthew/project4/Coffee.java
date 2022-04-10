@@ -36,11 +36,34 @@ public class Coffee extends MenuItem implements Customizable {
     }
 
     /**
+     * Copy constructor to duplicate a Coffee object into a new instance.
+     * @param coffee Coffee object to be copied.
+     */
+    public Coffee(Coffee coffee){
+        super(coffee.quantity);
+        this.sizeString = coffee.sizeString;
+        this.size = getSizeInt(this.sizeString);
+        this.addIns = coffee.addIns;
+        this.numAddIns = coffee.numAddIns;
+        super.totalPrice = coffee.itemPrice();
+
+    }
+
+    /**
      * Setter method for the Integer field for size based on the size String.
      * @param size String representation of size used to determine Integer size.
      */
     public void setSize(String size){
         this.size = getSizeInt(size);
+        this.sizeString = size;
+    }
+
+    /**
+     * Setter method for the Integer quantity of this Coffee instance.
+     * @param quantity Integer for new quantity of this string.
+     */
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
     }
 
     /**
@@ -57,16 +80,16 @@ public class Coffee extends MenuItem implements Customizable {
      * @return Integer corresponding to String size. (0,1,2,3)
      */
     private int getSizeInt(String size){
-        if(size.equals("Short")){
+        if(size == ("Short")){
             return 0;
         }
-        else if (size.equals("Tall")){
+        else if (size == ("Tall")){
             return 1;
         }
-        else if (size.equals("Grande")){
+        else if (size == ("Grande")){
             return GRANDE;
         }
-        else if (size.equals("Venti")){
+        else if (size == ("Venti")){
             return VENTI;
         }
         return 0;
