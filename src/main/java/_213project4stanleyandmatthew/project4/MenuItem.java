@@ -45,10 +45,18 @@ public class MenuItem {
         return this.quantity;
     }
 
+    /**
+     * Setter method to update the total item price.
+     * @param price New price to update this MenuItem with.
+     */
     public void setTotalPrice(double price){
         this.totalPrice = price;
     }
 
+    /**
+     * Getter method to retrieve the total price for this MenuItem accounting for quantity.
+     * @return Total price for this MenuItem.
+     */
     public double getTotalPrice(){
         return this.totalPrice;
     }
