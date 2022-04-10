@@ -22,6 +22,23 @@ public class StoreOrders implements Customizable {
     }
 
     /**
+     * Gets the number of orders in StoreOrders
+     * @return int value of the number of orders  in Storeorders
+     */
+    public int getNumOrders(){
+        return this.numOrders;
+    }
+
+    /**
+     * Gets a specific order from orders
+     * @param index integer value of the index of the specfic order being requested
+     * @return the order corresponding to the specified index
+     */
+    public Order getOrder(int index){
+        return this.orders[index];
+    }
+
+    /**
      * Creates an Order array of capacity of the array + 1 and then copies over that values of that
      * Order array into the new array and sets it as the new list of Orders.
      */

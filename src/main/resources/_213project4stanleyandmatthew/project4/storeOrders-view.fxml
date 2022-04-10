@@ -36,7 +36,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="orderNumSelect" focusTraversable="false" prefHeight="43.0" prefWidth="150.0" promptText="Select an Order" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="orderNumSelect" focusTraversable="false" onAction="#showOrder" prefHeight="43.0" prefWidth="150.0" promptText="Select an Order" GridPane.halignment="CENTER" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label text="total">

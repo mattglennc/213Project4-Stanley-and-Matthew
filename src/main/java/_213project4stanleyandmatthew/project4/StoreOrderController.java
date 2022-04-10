@@ -1,5 +1,7 @@
 package _213project4stanleyandmatthew.project4;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -14,7 +16,8 @@ import javafx.scene.control.TextField;
  */
 public class StoreOrderController {
     private MainController mainController;
-
+    private StoreOrders orders;
+    private static final Double SALESTAX = .06625;
 
     @FXML
     private ListView<String> orderList;
@@ -29,6 +32,32 @@ public class StoreOrderController {
 
     }
 
+    /**
+     * Event handler for adding or removing Milk add-in from current coffee order.
+     * @param event Add Milk if checked, remove if unchecked.
+     */
+    @FXML
+    void showOrder(ActionEvent event) {
+        String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
+        int index = Integer.parseInt(orderIndex) - 1; // arrays are indexed starting at 0 not 1 the -1 is to offset this
+        Order currentOrder = this.orders.getOrder(index);
+        orderList.getItems().clear(); //clear the old order
+        for (int i = 0; i < currentOrder.getNumItems(); i++) {
+            orderList.getItems().add(currentOrder.getItem(i).toString());
+        }
+        setCost(currentOrder);
+    }
+
+    /**
+     * Sets the Order costs to be displayed in the salesTax, subTotal, and totalCost text fields.
+     */
+    private void setCost(Order currentOrder){
+        Double numSubtotal = currentOrder.finalCost();
+        Double tax = SALESTAX * numSubtotal;
+        Double total = tax + numSubtotal;
+        String newTotal = "$" + String.format("%.2f", total);
+        totalCost.setText(newTotal);
+    }
 
     /**
      * References the MainController in this DonutController instance.
@@ -36,14 +65,26 @@ public class StoreOrderController {
      * @param controller MainController to be referenced in this view.
      */
     public void setMainController(MainController controller) {
-        mainController = controller;
+        this.mainController = controller;
+        this.orders= this.mainController.getOrders();
+        int length = this.orders.getNumOrders();
+        ObservableList<String> orderList = FXCollections.observableArrayList();
+        for (int i = 1; i< length+1 ; i++){
+            orderList.add("" + i);
+        }
+        orderNumSelect.setItems(orderList);
     }
 
 
     @FXML
     void cancelOrders(ActionEvent event) {
-
+        String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
+        int index = Integer.parseInt(orderIndex) - 1; // arrays are indexed starting at 0 not 1 the -1 is to offset this
+        Order currentOrder = this.orders.getOrder(index);
+        mainController.removeOrder(currentOrder);
     }
+
+
 
     @FXML
     void exportOrders(ActionEvent event) {

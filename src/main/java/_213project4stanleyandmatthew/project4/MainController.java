@@ -55,6 +55,16 @@ public class MainController {
     }
 
     /**
+     * Setter method for the orders of this MainController.
+     * @param remOrders Order to remove from store orders
+     */
+    public void removeOrder(Order remOrders) {
+        StoreOrders orders = this.orders;
+        orders.remove(remOrders);
+        return;
+    }
+
+    /**
      * Initializes the StoreOrders and Order instances of this controller as new instances.
      */
     public void initialize() {
