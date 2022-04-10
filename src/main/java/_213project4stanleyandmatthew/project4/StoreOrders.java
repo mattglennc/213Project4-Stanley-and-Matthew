@@ -23,6 +23,7 @@ public class StoreOrders implements Customizable {
 
     /**
      * Gets the number of orders in StoreOrders
+     *
      * @return int value of the number of orders  in Storeorders
      */
     public int getNumOrders(){
@@ -31,6 +32,7 @@ public class StoreOrders implements Customizable {
 
     /**
      * Gets a specific order from orders
+     *
      * @param index integer value of the index of the specfic order being requested
      * @return the order corresponding to the specified index
      */
@@ -52,6 +54,7 @@ public class StoreOrders implements Customizable {
 
     /**
      * Implemented from the Customizable interface, adds an Order to the list of Orders for this StoreOrders instance.
+     *
      * @param obj Order object to be added to list of Orders.
      * @return True if Order was successfully added to list, false otherwise.
      */
@@ -75,6 +78,7 @@ public class StoreOrders implements Customizable {
 
     /**
      * Implemented from the Customizable interface, removes an Order from the list of Orders for this StoreOrders instance.
+     *
      * @param obj Order object to be removed from list of Orders.
      * @return True if Order was successfully removed from list, false otherwise.
      */

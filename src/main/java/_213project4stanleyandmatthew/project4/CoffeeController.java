@@ -24,7 +24,6 @@ public class CoffeeController {
 
     /**
      * Initializes all data fields as well as the current Coffee Order to new instances.
-     *
      */
     public void initialize() {
         ObservableList<String> sizes = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");
@@ -51,6 +50,7 @@ public class CoffeeController {
 
     /**
      * References the MainController in this CoffeeController instance.
+     *
      * @param controller MainController to be referenced in this view.
      */
     public void setMainController(MainController controller) {
@@ -94,6 +94,7 @@ public class CoffeeController {
 
     /**
      * Event handler for adding or removing Caramel add-in from current coffee order.
+     *
      * @param event Add Caramel if checked, remove if unchecked.
      */
     @FXML
@@ -108,6 +109,7 @@ public class CoffeeController {
 
     /**
      * Event handler for adding or removing Cream add-in from current coffee order.
+     *
      * @param event Add Cream if checked, remove if unchecked.
      */
     @FXML
@@ -122,6 +124,7 @@ public class CoffeeController {
 
     /**
      * Event handler for adding or removing Milk add-in from current coffee order.
+     *
      * @param event Add Milk if checked, remove if unchecked.
      */
     @FXML
@@ -136,6 +139,7 @@ public class CoffeeController {
 
     /**
      * Event handler for setting size of the current coffee order.
+     *
      * @param event  Sets size of current coffee order to value of sizeSelect.
      */
     @FXML
@@ -146,6 +150,7 @@ public class CoffeeController {
 
     /**
      * Event handler for setting quantity of current coffee order.
+     *
      * @param event Sets quantity of current coffee order with value of quantitiesSelect.
      */
     @FXML
@@ -158,6 +163,7 @@ public class CoffeeController {
 
     /**
      * Event handler for adding or removing Syrup add-in from current coffee order.
+     *
      * @param event Add Syrup if checked, remove if unchecked.
      */
     @FXML
@@ -172,6 +178,7 @@ public class CoffeeController {
 
     /**
      * Event handler for adding or removing Whipped Cream add-in from current coffee order.
+     *
      * @param event Add Whipped Cream if checked, remove if unchecked.
      */
     @FXML
@@ -186,6 +193,7 @@ public class CoffeeController {
 
     /**
      * Event handler to add the current coffee order to the currentOrder in the MainController.
+     *
      * @param event When this button is clicked, add current coffee order to currentOrder in MainController.
      */
     @FXML

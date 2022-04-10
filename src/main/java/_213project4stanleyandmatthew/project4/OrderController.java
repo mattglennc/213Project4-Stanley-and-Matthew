@@ -63,6 +63,7 @@ public class OrderController {
 
     /**
      * Places order, adding it to the StoreOrders list of the MainController if there are items in menuItemsList.
+     *
      * @param event When this button is clicked, add this order to the StoreOrders list.
      */
     @FXML
@@ -91,6 +92,7 @@ public class OrderController {
 
     /**
      * Removes selected items from current Order, as long as there is an item chosen and the list is not empty.
+     *
      * @param event When this button is clicked, remove item from menuItemsList.
      */
     @FXML

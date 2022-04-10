@@ -31,8 +31,9 @@ public class StoreOrderController {
     private TextField totalCost;
 
     /**
-     * Event handler for adding or removing Milk add-in from current coffee order.
-     * @param event Add Milk if checked, remove if unchecked.
+     * Event handler for changing the displayed order based on what order was selected
+     *
+     * @param event display the selected order when chosen from the drop down.
      */
     @FXML
     void showOrder(ActionEvent event) {
@@ -49,7 +50,9 @@ public class StoreOrderController {
     }
 
     /**
-     * Sets the Order costs to be displayed in the salesTax, subTotal, and totalCost text fields.
+     * Sets the Order costs to be displayed in the totalCost text field.
+     *
+     * @param currentOrder the order where we need to read the cost information from and display
      */
     private void setCost(Order currentOrder){
         Double numSubtotal = currentOrder.finalCost();
@@ -78,7 +81,11 @@ public class StoreOrderController {
         }
     }
 
-
+    /**
+     * cancels the currently selected order
+     *
+     * @param event cancels the order upon clicking the cancel button.
+     */
     @FXML
     void cancelOrders(ActionEvent event) {
         if (orders.getNumOrders() == 0){
@@ -99,7 +106,13 @@ public class StoreOrderController {
         setMainController(mainController);
     }
 
-
+    /***
+     * exports the currently selected order to order.txt
+     *
+     * @param event exports the order upon clicking the export button
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @FXML
     void exportOrders(ActionEvent event) throws FileNotFoundException , IOException{
         System.out.println("Reached");

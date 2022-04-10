@@ -22,6 +22,7 @@ public class MainController {
 
     /**
      * Getter method that returns the StoreOrders
+     *
      * @return The StoreOrders list of orders for this MainController.
      */
     public StoreOrders getOrders() {
@@ -30,7 +31,8 @@ public class MainController {
 
     /**
      * Setter method for the currentOrder of this MainController.
-     * @param newOrder New order which will replace the old one.
+     *
+     * @param newOrders New order which will replace the old one.
      */
     public void setOrders(StoreOrders newOrders) {
         this.orders = newOrders;
@@ -48,6 +50,7 @@ public class MainController {
 
     /**
      * Getter method to return the currentOrder of this MainController.
+     *
      * @return The current Order of this Controller.
      */
     public Order getOrder() {
@@ -56,6 +59,7 @@ public class MainController {
 
     /**
      * Setter method for the currentOrder of this MainController.
+     *
      * @param newOrder New order which will replace the old one.
      */
     public void setOrder(Order newOrder) {
@@ -65,6 +69,7 @@ public class MainController {
 
     /**
      * Setter method for the orders of this MainController.
+     *
      * @param remOrders Order to remove from store orders
      */
     public void removeOrder(Order remOrders) {
@@ -83,6 +88,7 @@ public class MainController {
 
     /**
      * Event handler which opens the coffee-view window and references MainController in CoffeeController.
+     *
      * @param event When this button is clicked, open coffee-view.
      * @throws IOException
      */
@@ -100,6 +106,7 @@ public class MainController {
 
     /**
      * Event handler which opens the donut-view window and references MainController in DonutController.
+     *
      * @param event When this button is clicked, open donut-view.
      * @throws IOException
      */
@@ -117,6 +124,7 @@ public class MainController {
 
     /**
      * Event handler which opens the order-view window and references MainController in OrderController.
+     *
      * @param event When this button is clicked, open order-view.
      * @throws IOException
      */
@@ -134,6 +142,7 @@ public class MainController {
 
     /**
      * Event handler which opens the storeOrders-view window and references MainController in StoreOrderController.
+     *
      * @param event When this button is clicked, open storeOrders-view.
      * @throws IOException
      */
