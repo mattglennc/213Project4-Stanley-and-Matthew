@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -28,10 +29,6 @@ public class StoreOrderController {
     @FXML
     private TextField totalCost;
 
-    public void initialize() {
-
-    }
-
     /**
      * Event handler for adding or removing Milk add-in from current coffee order.
      * @param event Add Milk if checked, remove if unchecked.
@@ -39,13 +36,15 @@ public class StoreOrderController {
     @FXML
     void showOrder(ActionEvent event) {
         String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
-        int index = Integer.parseInt(orderIndex) - 1; // arrays are indexed starting at 0 not 1 the -1 is to offset this
-        Order currentOrder = this.orders.getOrder(index);
-        orderList.getItems().clear(); //clear the old order
-        for (int i = 0; i < currentOrder.getNumItems(); i++) {
-            orderList.getItems().add(currentOrder.getItem(i).toString());
+        if(orderIndex != null){
+            int index = Integer.parseInt(orderIndex) - 1; // arrays are indexed starting at 0 not 1 the -1 is to offset this
+            Order currentOrder = this.orders.getOrder(index);
+            orderList.getItems().clear(); //clear the old order
+            for (int i = 0; i < currentOrder.getNumItems(); i++) {
+                orderList.getItems().add(currentOrder.getItem(i).toString());
+            }
+            setCost(currentOrder);
         }
-        setCost(currentOrder);
     }
 
     /**
@@ -73,15 +72,30 @@ public class StoreOrderController {
             orderList.add("" + i);
         }
         orderNumSelect.setItems(orderList);
+        if(orders.getNumOrders() == 0){
+            totalCost.setText("$0.00");
+        }
     }
 
 
     @FXML
     void cancelOrders(ActionEvent event) {
+        if (orders.getNumOrders() == 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("NO ORDERS MADE");
+            alert.setHeaderText("You have made 0 orders.");
+            alert.setContentText("Must have at least 1 order to cancel.");
+            alert.showAndWait();
+            return;
+        }
         String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
         int index = Integer.parseInt(orderIndex) - 1; // arrays are indexed starting at 0 not 1 the -1 is to offset this
         Order currentOrder = this.orders.getOrder(index);
-        mainController.removeOrder(currentOrder);
+        orders.remove(currentOrder);
+        orderList.getItems().clear();
+        this.mainController.setOrders(orders);
+        orderNumSelect.getSelectionModel().selectFirst();
+        setMainController(mainController);
     }
 
 
