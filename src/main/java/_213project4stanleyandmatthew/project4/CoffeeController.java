@@ -31,6 +31,14 @@ public class CoffeeController {
         sizeSelect.getItems().addAll(sizes);
         ObservableList<String> quantities = FXCollections.observableArrayList("1", "2", "3", "4", "5");
         quantitiesSelect.getItems().addAll(quantities);
+        reInitialize();
+
+    }
+
+    /**
+     * Initializes all data fields that can be reinitialized after an order is made.
+     */
+    public void reInitialize(){
         sizeSelect.getSelectionModel().selectFirst();
         quantitiesSelect.getSelectionModel().selectFirst();
         String size = sizeSelect.getValue();
@@ -184,7 +192,7 @@ public class CoffeeController {
     void orderCoffee(ActionEvent event) {
         Order order = this.mainController.getOrder();
         order.add(coffee);
-        initialize();
+        reInitialize();
         this.mainController.setOrder(order);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Order Confirmation");
