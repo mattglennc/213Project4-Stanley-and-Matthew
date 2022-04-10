@@ -116,6 +116,11 @@ public class StoreOrderController {
         this.mainController.setOrders(orders);
         orderNumSelect.getSelectionModel().selectFirst();
         setMainController(mainController);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Order Removed");
+        alert.setHeaderText("Order has been removed from your the store orders.");
+        alert.setContentText("Close this alert to continue operation");
+        alert.showAndWait();
     }
 
     /***
@@ -127,23 +132,25 @@ public class StoreOrderController {
      */
     @FXML
     void exportOrders(ActionEvent event) throws FileNotFoundException , IOException{
+        if (orders.getNumOrders() == 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NO ORDERS MADE");
+            alert.setHeaderText("You have made 0 orders.");
+            alert.setContentText("Must have at least 1 order to export.");
+            alert.showAndWait();
+            return;
+        }
         File file = new File("order.txt");
         file.createNewFile();
         PrintWriter pw = new PrintWriter(file);
         pw.println(this.orders.print());
-        /*String orderIndex = orderNumSelect.getSelectionModel().getSelectedItem();
-        int index = Integer.parseInt(orderIndex) - 1;
-        Order currentOrder = this.orders.getOrder(index);
-        pw.println("Order Start");
-        pw.println();
-        for (int i = 0; i < currentOrder.getNumItems(); i++){
-            pw.println(currentOrder.getItem(i).toString());
-        }
-        pw.println();
-        pw.println("Total Cost: " + totalCost.getText());
-        pw.println();
-        pw.println("Order complete");*/
+
         pw.close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Orders Exported");
+        alert.setHeaderText("Order have been Exported to orders.txt.");
+        alert.setContentText("Close this alert to continue operation");
+        alert.showAndWait();
 
         return;
     }
