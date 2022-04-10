@@ -8,7 +8,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import java.io.*;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 /**
  * This StoreOrderController class provides functionality for order-view.xml, allowing
@@ -115,7 +119,6 @@ public class StoreOrderController {
      */
     @FXML
     void exportOrders(ActionEvent event) throws FileNotFoundException , IOException{
-        System.out.println("Reached");
         File file = new File("order.txt");
         file.createNewFile();
         PrintWriter pw = new PrintWriter(file);
@@ -132,6 +135,7 @@ public class StoreOrderController {
         pw.println();
         pw.println("Order complete");
         pw.close();
+
         return;
     }
 }
