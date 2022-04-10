@@ -8,8 +8,8 @@ package _213project4stanleyandmatthew.project4;
  */
 public class MenuItem {
 
-    protected int quantity;
-    protected double totalPrice;
+    private int quantity;
+    private double totalPrice;
 
     /**
      * Constructor to create instance of MenuItem class.
@@ -43,6 +43,14 @@ public class MenuItem {
      */
     public int getQuantity() {
         return this.quantity;
+    }
+
+    public void setTotalPrice(double price){
+        this.totalPrice = price;
+    }
+
+    public double getTotalPrice(){
+        return this.totalPrice;
     }
 
 

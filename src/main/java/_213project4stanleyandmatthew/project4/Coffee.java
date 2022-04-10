@@ -32,7 +32,7 @@ public class Coffee extends MenuItem implements Customizable {
         this.sizeString = size;
         this.addIns = new String[INITIAL_SIZE];
         this.numAddIns = 0;
-        super.totalPrice = this.itemPrice();
+        super.setTotalPrice(this.itemPrice());
     }
 
     /**
@@ -40,12 +40,12 @@ public class Coffee extends MenuItem implements Customizable {
      * @param coffee Coffee object to be copied.
      */
     public Coffee(Coffee coffee){
-        super(coffee.quantity);
+        super(coffee.getQuantity());
         this.sizeString = coffee.sizeString;
         this.size = getSizeInt(this.sizeString);
         this.addIns = coffee.addIns;
         this.numAddIns = coffee.numAddIns;
-        super.totalPrice = coffee.itemPrice();
+        super.setTotalPrice(this.itemPrice());
 
     }
 
@@ -58,13 +58,7 @@ public class Coffee extends MenuItem implements Customizable {
         this.sizeString = size;
     }
 
-    /**
-     * Setter method for the Integer quantity of this Coffee instance.
-     * @param quantity Integer for new quantity of this string.
-     */
-    public void setQuantity(int quantity){
-        this.quantity = quantity;
-    }
+
 
     /**
      * Getter method for the String representation of the Coffee price.
@@ -113,7 +107,7 @@ public class Coffee extends MenuItem implements Customizable {
                     if (this.addIns[i] == null) {
                         this.addIns[i] = addIn;
                         this.numAddIns = this.numAddIns + 1;
-                        this.totalPrice += ADD_ON * this.quantity;
+                        super.setTotalPrice(super.getTotalPrice() + ADD_ON * this.getQuantity());
                         return true;
                     }
                 }
@@ -176,7 +170,7 @@ public class Coffee extends MenuItem implements Customizable {
     public double itemPrice() {
         double resultPrice = SHORT_PRICE;
         resultPrice += this.size * SIZE_INCREASE + ADD_ON * numAddIns;
-        return resultPrice * super.quantity;
+        return resultPrice * super.getQuantity();
     }
 
     /**

@@ -155,7 +155,7 @@ public class Order implements Customizable {
     public double finalCost() {
         double cost = 0;
         for (int i = 0; i < this.numItems; i++) {
-            cost += (this.menuItems[i].totalPrice);
+            cost += (this.menuItems[i].itemPrice());
         }
         return cost;
     }

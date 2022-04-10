@@ -17,7 +17,7 @@ public class YeastDonut extends Donut {
      */
     public YeastDonut(String flavor, int quantity) {
         super(flavor, quantity);
-        super.totalPrice = this.itemPrice();
+        super.setTotalPrice(this.itemPrice());
     }
 
     /**
@@ -26,7 +26,7 @@ public class YeastDonut extends Donut {
      */
     @Override
     public double itemPrice() {
-        return YEAST_DONUT_PRICE * super.quantity;
+        return YEAST_DONUT_PRICE * super.getQuantity();
     }
 
     /**

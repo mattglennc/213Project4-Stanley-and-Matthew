@@ -17,7 +17,7 @@ public class CakeDonut extends Donut {
      */
     public CakeDonut(String flavor, int quantity) {
         super(flavor, quantity);
-        super.totalPrice = this.itemPrice();
+        super.setTotalPrice(this.itemPrice());
     }
 
     /**
@@ -26,7 +26,7 @@ public class CakeDonut extends Donut {
      */
     @Override
     public double itemPrice() {
-        return CAKE_DONUT_PRICE * super.quantity;
+        return CAKE_DONUT_PRICE * super.getQuantity();
     }
 
     /**

@@ -17,7 +17,7 @@ public class DonutHole extends Donut {
      */
     public DonutHole(String flavor, int quantity) {
         super(flavor, quantity);
-        super.totalPrice = this.itemPrice();
+        super.setTotalPrice(this.itemPrice());
     }
 
     /**
@@ -26,7 +26,7 @@ public class DonutHole extends Donut {
      */
     @Override
     public double itemPrice() {
-        return DONUT_HOLE_PRICE * super.quantity;
+        return DONUT_HOLE_PRICE * super.getQuantity();
     }
 
     /**
