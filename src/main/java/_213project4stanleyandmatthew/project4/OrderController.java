@@ -81,6 +81,11 @@ public class OrderController {
         alert.setHeaderText("Your order has been placed.");
         alert.setContentText("Check the store orders to view.");
         alert.showAndWait();
+        menuItemsList.getItems().clear();
+        salesTax.setText("$0.00");
+        subTotal.setText("$0.00");
+        totalCost.setText("$0.00");
+        setMainController(mainController);
         return;
     }
 

@@ -29,6 +29,15 @@ public class MainController {
     }
 
     /**
+     * Setter method for the currentOrder of this MainController.
+     * @param newOrder New order which will replace the old one.
+     */
+    public void setOrders(StoreOrders newOrders) {
+        this.orders = newOrders;
+        return;
+    }
+
+    /**
      * Places currentOrder, adding it to the StoreOrders list.
      */
     public void placeOrder() {
